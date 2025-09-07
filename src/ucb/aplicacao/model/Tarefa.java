@@ -3,15 +3,17 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Tarefa {
-    private String id;
+    private long id;
     private String titulo;
     private String descricao;
     private boolean completa;
     private LocalDateTime dataAgora;
 
+    private static long contador = 1;
+
     public Tarefa(){
         this.completa = false;
-        this.id = UUID.randomUUID().toString();
+        this.id = contador++;
         this.dataAgora = LocalDateTime.now();
     }
 
@@ -38,11 +40,11 @@ public class Tarefa {
         this.titulo = titulo;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

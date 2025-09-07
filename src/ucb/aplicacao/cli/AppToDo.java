@@ -44,7 +44,7 @@ public class AppToDo {
                             System.out.println("Digite o titulo");
                             titulo = scanner.nextLine();
                             tarefaCriada = tarefas.criar(titulo);
-                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo:"+ tarefaCriada.getTitulo() + "\n");
+                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo: "+ tarefaCriada.getTitulo() + "\n");
 
                             break;
 
