@@ -29,7 +29,7 @@ public class AppToDo {
 
             System.out.println();
 
-            switch (opcao){
+            switch (opcao) {
                 case 1:
                     System.out.println("Como você quer criar sua tarefa?");
                     System.out.println("1 - Título");
@@ -39,12 +39,12 @@ public class AppToDo {
                     opcao = scanner.nextInt();
                     scanner.nextLine();
 
-                    switch (opcao){
+                    switch (opcao) {
                         case 1:
                             System.out.println("Digite o titulo");
                             titulo = scanner.nextLine();
                             tarefaCriada = tarefas.criar(titulo);
-                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo: "+ tarefaCriada.getTitulo() + "\n");
+                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo: " + tarefaCriada.getTitulo() + "\n");
 
                             break;
 
@@ -54,7 +54,7 @@ public class AppToDo {
                             System.out.println("Digite a descrição");
                             descricao = scanner.nextLine();
                             tarefaCriada = tarefas.criar(titulo, descricao);
-                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo: "+ tarefaCriada.getTitulo() + "\nDescrição : " + tarefaCriada.getDescricao() + "\n");
+                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo: " + tarefaCriada.getTitulo() + "\nDescrição : " + tarefaCriada.getDescricao() + "\n");
                             break;
 
                         case 3:
@@ -75,6 +75,19 @@ public class AppToDo {
                             break;
                     }
                     break;
+                case 2:
+                    System.out.println("digite o id da tarefa que quer deletar: ");
+                    long id = scanner.nextLong();
+                    Tarefa tarefaDeletada = tarefas.deletar(id);
+                    System.out.println(
+                            "A sua tarefa foi deletada com sucesso:\n" +
+                                    "Título: " + tarefaDeletada.getTitulo() + "\n" +
+                                    "Descrição: " + tarefaDeletada.getDescricao() + "\n" +
+                                    "Status: " + (tarefaDeletada.isCompleta() ? "Completa" : "Incompleta\n")
+                    );
+
+                        break;
+
 
                 case 5:
                     System.out.println("Operação das tarefas finaliza");

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TarefaServico {
-    private final List<Tarefa> tarefas = new ArrayList<Tarefa>();
+    private final ArrayList <Tarefa> tarefas = new ArrayList<Tarefa>();
 
     public Tarefa criar(String titulo){
         Tarefa tarefa = new Tarefa(titulo);
@@ -26,4 +26,20 @@ public class TarefaServico {
         tarefas.add(tarefa);
         return tarefa;
     }
+
+    public Tarefa deletar(long id) {
+        for (int i = 0; i < this.tarefas.size(); i++) {
+            Tarefa tarefa = this.tarefas.get(i);
+            if (tarefa.getId() == id) {
+                this.tarefas.remove(i);
+                return tarefa;
+            }
+        }
+        return null;
+    }
+
+
+
+
 }
+
