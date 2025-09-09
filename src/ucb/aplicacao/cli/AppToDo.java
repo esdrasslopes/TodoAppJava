@@ -17,7 +17,7 @@ public class AppToDo {
         String descricao;
         int completa;
         TarefaServico tarefas = new TarefaServico();
-        Tarefa tarefaCriada;
+        long idTarefa;
 
         while (controle) {
             System.out.println("Gerenciamento de tarefas");
@@ -26,7 +26,8 @@ public class AppToDo {
             System.out.println("3 - Atualizar tarefa");
             System.out.println("4 - Listar tarefas");
             System.out.println("5 - Pesquisar uma tarefa por ID");
-            System.out.println("6 - Sair");
+            System.out.println("6 - Marcar tarefa como concluída");
+            System.out.println("7 - Sair");
 
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -47,7 +48,7 @@ public class AppToDo {
                         case 1:
                             System.out.println("Digite o título:");
                             titulo = scanner.nextLine();
-                            tarefaCriada = tarefas.criar(titulo);
+                            tarefas.criar(titulo);
                             System.out.println("Tarefa criada com sucesso!");
                             break;
 
@@ -56,7 +57,7 @@ public class AppToDo {
                             titulo = scanner.nextLine();
                             System.out.println("Digite a descrição:");
                             descricao = scanner.nextLine();
-                            tarefaCriada = tarefas.criar(titulo, descricao);
+                            tarefas.criar(titulo, descricao);
                             System.out.println("Tarefa criada com sucesso!");
                             break;
 
@@ -67,7 +68,7 @@ public class AppToDo {
                             descricao = scanner.nextLine();
                             System.out.println("Digite o status da tarefa (1 - Completa / 2 - Incompleta):");
                             completa = scanner.nextInt();
-                            tarefaCriada = tarefas.criar(titulo, descricao, completa);
+                            tarefas.criar(titulo, descricao, completa);
                             System.out.println("Tarefa criada com sucesso!");
                             break;
                     }
@@ -130,10 +131,10 @@ public class AppToDo {
 
                 case 5:
                     System.out.println("Digite o ID da tarefa que deseja consultar: ");
-                    long idConsulta = scanner.nextLong();
+                    idTarefa = scanner.nextLong();
                     scanner.nextLine();
 
-                    Tarefa tarefaEncontrada = tarefas.buscarPorId(idConsulta);
+                    Tarefa tarefaEncontrada = tarefas.buscarPorId(idTarefa);
 
                     if (tarefaEncontrada != null) {
                         System.out.println("Tarefa encontrada:");
@@ -144,11 +145,29 @@ public class AppToDo {
                         System.out.println("Status: " + (tarefaEncontrada.isCompleta() ? "Completa" : "Incompleta"));
                         System.out.println("---------------");
                     } else {
-                        System.out.println("Tarefa com ID " + idConsulta + " não encontrada!");
+                        System.out.println("Tarefa com ID " + idTarefa + " não encontrada!");
                     }
                     break;
 
                 case 6:
+                    System.out.println("Digite o ID da tarefa que deseja marcar como concluída: ");
+                    idTarefa = scanner.nextLong();
+                    scanner.nextLine();
+                    Tarefa tarefa = tarefas.marcarTarefaComoConcluida(idTarefa);
+                    if (tarefa != null) {
+                        System.out.println("Tarefa atualizada:");
+                        System.out.println("ID: " + tarefa.getId());
+                        System.out.println("Título: " + tarefa.getTitulo());
+                        System.out.println("Descrição: " +
+                                (tarefa.getDescricao() != null ? tarefa.getDescricao() : "Nenhuma"));
+                        System.out.println("Status: " + (tarefa.isCompleta() ? "Completa" : "Incompleta"));
+                        System.out.println("---------------");
+                    } else {
+                        System.out.println("Tarefa com ID " + idTarefa + " não encontrada!");
+                    }
+
+                    break;
+                case 7:
                     System.out.println("Operação finalizada. Até mais!");
                     controle = false;
                     break;

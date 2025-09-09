@@ -70,4 +70,16 @@ public class TarefaServico {
 
         return null;
     }
+
+    public Tarefa marcarTarefaComoConcluida(long id){
+        Tarefa tarefa = buscarPorId(id);
+
+        if(tarefa != null){
+            tarefa.setCompleta(true);
+
+            return tarefa;
+        }
+
+        return null;
+    }
 }
