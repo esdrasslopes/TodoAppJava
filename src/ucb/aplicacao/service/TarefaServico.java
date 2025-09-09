@@ -36,10 +36,18 @@ public class TarefaServico {
             }
         }
         return null;
+
     }
 
 
+    public ArrayList<Tarefa> listar(){
+        List<Tarefa> listar;{
+            return new ArrayList<>(tarefas);
+        }
 
+    }
 
 }
+
+
 

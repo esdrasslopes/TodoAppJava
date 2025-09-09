@@ -1,7 +1,10 @@
 package ucb.aplicacao.cli;
 import ucb.aplicacao.model.Tarefa;
 import ucb.aplicacao.service.TarefaServico;
+
+import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class AppToDo {
     public static void main(String[] args){
@@ -92,6 +95,23 @@ public class AppToDo {
                 case 5:
                     System.out.println("Operação das tarefas finaliza");
                     controle = false;
+                    break;
+
+                case 4:
+                    System.out.println("Lista de todas as tarefas:");
+                    List<Tarefa> todasTarefas = tarefas.listar();
+
+                    if (todasTarefas.isEmpty()) {
+                        System.out.println("Nenhuma tarefa cadastrada.\n");
+                    } else {
+                        for (Tarefa t : todasTarefas) {
+                            System.out.println("ID: " + t.getId());
+                            System.out.println("Título: " + t.getTitulo());
+                            System.out.println("Descrição: " + (t.getDescricao() != null ? t.getDescricao() : "Nenhuma"));
+                            System.out.println("Status: " + (t.isCompleta() ? "Completa" : "Incompleta"));
+                            System.out.println("---------------");
+                        }
+                    }
                     break;
             }
         }
