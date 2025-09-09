@@ -94,10 +94,10 @@ public class AppToDo {
                     }
                     break;
 
-                case 3: // 🔹 Atualizar tarefa
+                case 3:
                     System.out.println("Digite o id da tarefa que deseja atualizar:");
                     long idAtualizar = scanner.nextLong();
-                    scanner.nextLine(); // consumir quebra de linha
+                    scanner.nextLine();
 
                     System.out.println("Digite o novo título (ou deixe vazio para não alterar):");
                     String novoTitulo = scanner.nextLine();
@@ -115,11 +115,12 @@ public class AppToDo {
                     Tarefa tarefaAtualizada = tarefas.atualizar(idAtualizar, novoTitulo, novaDescricao, completaAtualizada);
 
                     if (tarefaAtualizada != null) {
-                        System.out.println("Tarefa atualizada com sucesso:");
-                        System.out.println("ID: " + tarefaAtualizada.getId());
-                        System.out.println("Título: " + tarefaAtualizada.getTitulo());
-                        System.out.println("Descrição: " + (tarefaAtualizada.getDescricao() != null ? tarefaAtualizada.getDescricao() : "Nenhuma"));
-                        System.out.println("Status: " + (tarefaAtualizada.isCompleta() ? "Completa" : "Incompleta"));
+                        System.out.println(
+                                "A sua tarefa foi deletada com sucesso:\n" +
+                                        "Título: " + tarefaAtualizada.getTitulo() + "\n" +
+                                        "Descrição: " + tarefaAtualizada.getDescricao() + "\n" +
+                                        "Status: " + (tarefaAtualizada.isCompleta() ? "Completa" : "Incompleta") + "\n"
+                        );
                         System.out.println("---------------");
                     } else {
                         System.out.println("Tarefa com ID " + idAtualizar + " não encontrada!");
