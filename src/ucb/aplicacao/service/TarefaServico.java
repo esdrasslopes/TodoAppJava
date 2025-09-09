@@ -1,13 +1,11 @@
 package ucb.aplicacao.service;
 
 import ucb.aplicacao.model.Tarefa;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class TarefaServico {
-    private final ArrayList <Tarefa> tarefas = new ArrayList<Tarefa>();
+    private final ArrayList<Tarefa> tarefas = new ArrayList<>();
 
     public Tarefa criar(String titulo){
         Tarefa tarefa = new Tarefa(titulo);
@@ -36,18 +34,28 @@ public class TarefaServico {
             }
         }
         return null;
-
     }
-
 
     public ArrayList<Tarefa> listar(){
-        List<Tarefa> listar;{
-            return new ArrayList<>(tarefas);
-        }
-
+        return new ArrayList<>(tarefas);
     }
 
+
+    public Tarefa atualizar(long id, String novoTitulo, String novaDescricao, Boolean completa) {
+        for (Tarefa tarefa : tarefas) {
+            if (tarefa.getId() == id) {
+                if (novoTitulo != null && !novoTitulo.isEmpty()) {
+                    tarefa.setTitulo(novoTitulo);
+                }
+                if (novaDescricao != null && !novaDescricao.isEmpty()) {
+                    tarefa.setDescricao(novaDescricao);
+                }
+                if (completa != null) {
+                    tarefa.setCompleta(completa);
+                }
+                return tarefa;
+            }
+        }
+        return null;
+    }
 }
-
-
-
