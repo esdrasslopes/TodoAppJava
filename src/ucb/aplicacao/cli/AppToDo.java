@@ -25,8 +25,9 @@ public class AppToDo {
             System.out.println("1 - Criar tarefa");
             System.out.println("2 - Deletar tarefa");
             System.out.println("3 - Atualizar tarefa");
-            System.out.println("4 - Pesquisar tarefa");
-            System.out.println("5 - Sair");
+            System.out.println("4 - Listar tarefas");
+            System.out.println("5 - Pesquisar uma tarefa");
+            System.out.println("6 - Sair");
 
             opcao = scanner.nextInt();
 
@@ -79,7 +80,7 @@ public class AppToDo {
                     }
                     break;
                 case 2:
-                    System.out.println("digite o id da tarefa que quer deletar: ");
+                    System.out.println("Digite o id da tarefa que quer deletar: ");
                     long id = scanner.nextLong();
                     Tarefa tarefaDeletada = tarefas.deletar(id);
                     System.out.println(
@@ -90,12 +91,6 @@ public class AppToDo {
                     );
 
                         break;
-
-
-                case 5:
-                    System.out.println("Operação das tarefas finaliza");
-                    controle = false;
-                    break;
 
                 case 4:
                     System.out.println("Lista de todas as tarefas:");
@@ -113,6 +108,14 @@ public class AppToDo {
                         }
                     }
                     break;
+
+
+
+                case 6:
+                    System.out.println("Operação das tarefas finaliza");
+                    controle = false;
+                    break;
+
             }
         }
     }
