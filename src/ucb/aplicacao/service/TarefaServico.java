@@ -25,6 +25,15 @@ public class TarefaServico {
         return tarefa;
     }
 
+    public Tarefa buscarPorId(long id) {
+        for (Tarefa tarefa : tarefas) {
+            if (tarefa.getId() == id) {
+                return tarefa;
+            }
+        }
+        return null;
+    }
+
     public Tarefa deletar(long id) {
         for (int i = 0; i < this.tarefas.size(); i++) {
             Tarefa tarefa = this.tarefas.get(i);
@@ -36,35 +45,29 @@ public class TarefaServico {
         return null;
     }
 
+
+
     public ArrayList<Tarefa> listar() {
         return new ArrayList<>(tarefas);
     }
 
     public Tarefa atualizar(long id, String novoTitulo, String novaDescricao, Boolean completa) {
-        for (Tarefa tarefa : tarefas) {
-            if (tarefa.getId() == id) {
-                if (novoTitulo != null && !novoTitulo.isEmpty()) {
-                    tarefa.setTitulo(novoTitulo);
-                }
-                if (novaDescricao != null && !novaDescricao.isEmpty()) {
-                    tarefa.setDescricao(novaDescricao);
-                }
-                if (completa != null) {
-                    tarefa.setCompleta(completa);
-                }
-                return tarefa;
-            }
-        }
-        return null;
-    }
+        Tarefa tarefa = buscarPorId(id);
 
-    // 🔎 Método para buscar tarefa pelo ID
-    public Tarefa buscarPorId(long id) {
-        for (Tarefa tarefa : tarefas) {
-            if (tarefa.getId() == id) {
-                return tarefa;
+        if(tarefa != null){
+            if (novoTitulo != null && !novoTitulo.isEmpty()) {
+                tarefa.setTitulo(novoTitulo);
             }
+            if (novaDescricao != null && !novaDescricao.isEmpty()) {
+                tarefa.setDescricao(novaDescricao);
+            }
+            if (completa != null) {
+                tarefa.setCompleta(completa);
+            }
+
+            return tarefa;
         }
+
         return null;
     }
 }
