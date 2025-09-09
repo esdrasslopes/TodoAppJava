@@ -7,19 +7,19 @@ import java.util.List;
 public class TarefaServico {
     private final ArrayList<Tarefa> tarefas = new ArrayList<>();
 
-    public Tarefa criar(String titulo){
+    public Tarefa criar(String titulo) {
         Tarefa tarefa = new Tarefa(titulo);
         tarefas.add(tarefa);
         return tarefa;
     }
 
-    public Tarefa criar(String titulo, String descricao){
+    public Tarefa criar(String titulo, String descricao) {
         Tarefa tarefa = new Tarefa(titulo, descricao);
         tarefas.add(tarefa);
         return tarefa;
     }
 
-    public Tarefa criar(String titulo, String descricao, int completa){
+    public Tarefa criar(String titulo, String descricao, int completa) {
         Tarefa tarefa = new Tarefa(titulo, descricao, completa);
         tarefas.add(tarefa);
         return tarefa;
@@ -36,10 +36,9 @@ public class TarefaServico {
         return null;
     }
 
-    public ArrayList<Tarefa> listar(){
+    public ArrayList<Tarefa> listar() {
         return new ArrayList<>(tarefas);
     }
-
 
     public Tarefa atualizar(long id, String novoTitulo, String novaDescricao, Boolean completa) {
         for (Tarefa tarefa : tarefas) {
@@ -53,6 +52,16 @@ public class TarefaServico {
                 if (completa != null) {
                     tarefa.setCompleta(completa);
                 }
+                return tarefa;
+            }
+        }
+        return null;
+    }
+
+    // 🔎 Método para buscar tarefa pelo ID
+    public Tarefa buscarPorId(long id) {
+        for (Tarefa tarefa : tarefas) {
+            if (tarefa.getId() == id) {
                 return tarefa;
             }
         }

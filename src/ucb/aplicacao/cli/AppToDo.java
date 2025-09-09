@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AppToDo {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         boolean controle = true;
@@ -19,13 +19,13 @@ public class AppToDo {
         TarefaServico tarefas = new TarefaServico();
         Tarefa tarefaCriada;
 
-        while (controle){
+        while (controle) {
             System.out.println("Gerenciamento de tarefas");
             System.out.println("1 - Criar tarefa");
             System.out.println("2 - Deletar tarefa");
             System.out.println("3 - Atualizar tarefa");
             System.out.println("4 - Listar tarefas");
-            System.out.println("5 - Pesquisar uma tarefa");
+            System.out.println("5 - Pesquisar uma tarefa por ID");
             System.out.println("6 - Sair");
 
             opcao = scanner.nextInt();
@@ -45,57 +45,47 @@ public class AppToDo {
 
                     switch (opcao) {
                         case 1:
-                            System.out.println("Digite o titulo");
+                            System.out.println("Digite o título:");
                             titulo = scanner.nextLine();
                             tarefaCriada = tarefas.criar(titulo);
-                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo: " + tarefaCriada.getTitulo() + "\n");
+                            System.out.println("Tarefa criada com sucesso!");
                             break;
 
                         case 2:
-                            System.out.println("Digite o titulo");
+                            System.out.println("Digite o título:");
                             titulo = scanner.nextLine();
-                            System.out.println("Digite a descrição");
+                            System.out.println("Digite a descrição:");
                             descricao = scanner.nextLine();
                             tarefaCriada = tarefas.criar(titulo, descricao);
-                            System.out.println("A sua tarefa foi criada com sucesso:\nTítulo: " + tarefaCriada.getTitulo() + "\nDescrição : " + tarefaCriada.getDescricao() + "\n");
+                            System.out.println("Tarefa criada com sucesso!");
                             break;
 
                         case 3:
-                            System.out.println("Digite o titulo");
+                            System.out.println("Digite o título:");
                             titulo = scanner.nextLine();
-                            System.out.println("Digite a descrição");
+                            System.out.println("Digite a descrição:");
                             descricao = scanner.nextLine();
-                            System.out.println("Digite o status da tarefa. 1 - Completa 2 - Incompleta");
+                            System.out.println("Digite o status da tarefa (1 - Completa / 2 - Incompleta):");
                             completa = scanner.nextInt();
                             tarefaCriada = tarefas.criar(titulo, descricao, completa);
-                            System.out.println(
-                                    "A sua tarefa foi criada com sucesso:\n" +
-                                            "Título: " + tarefaCriada.getTitulo() + "\n" +
-                                            "Descrição: " + tarefaCriada.getDescricao() + "\n" +
-                                            "Status: " + (tarefaCriada.isCompleta() ? "Completa" : "Incompleta\n")
-                            );
+                            System.out.println("Tarefa criada com sucesso!");
                             break;
                     }
                     break;
 
                 case 2:
-                    System.out.println("Digite o id da tarefa que quer deletar: ");
+                    System.out.println("Digite o ID da tarefa que deseja deletar: ");
                     long id = scanner.nextLong();
                     Tarefa tarefaDeletada = tarefas.deletar(id);
                     if (tarefaDeletada != null) {
-                        System.out.println(
-                                "A sua tarefa foi deletada com sucesso:\n" +
-                                        "Título: " + tarefaDeletada.getTitulo() + "\n" +
-                                        "Descrição: " + tarefaDeletada.getDescricao() + "\n" +
-                                        "Status: " + (tarefaDeletada.isCompleta() ? "Completa" : "Incompleta\n")
-                        );
+                        System.out.println("Tarefa deletada com sucesso!");
                     } else {
-                        System.out.println("Tarefa não encontrada!\n");
+                        System.out.println("Tarefa não encontrada!");
                     }
                     break;
 
                 case 3:
-                    System.out.println("Digite o id da tarefa que deseja atualizar:");
+                    System.out.println("Digite o ID da tarefa que deseja atualizar:");
                     long idAtualizar = scanner.nextLong();
                     scanner.nextLine();
 
@@ -105,7 +95,7 @@ public class AppToDo {
                     System.out.println("Digite a nova descrição (ou deixe vazio para não alterar):");
                     String novaDescricao = scanner.nextLine();
 
-                    System.out.println("Digite o novo status da tarefa (1 - Completa / 2 - Incompleta / 0 - não alterar):");
+                    System.out.println("Digite o novo status (1 - Completa / 2 - Incompleta / 0 - não alterar):");
                     int status = scanner.nextInt();
                     scanner.nextLine();
                     Boolean completaAtualizada = null;
@@ -115,15 +105,9 @@ public class AppToDo {
                     Tarefa tarefaAtualizada = tarefas.atualizar(idAtualizar, novoTitulo, novaDescricao, completaAtualizada);
 
                     if (tarefaAtualizada != null) {
-                        System.out.println(
-                                "A sua tarefa foi deletada com sucesso:\n" +
-                                        "Título: " + tarefaAtualizada.getTitulo() + "\n" +
-                                        "Descrição: " + tarefaAtualizada.getDescricao() + "\n" +
-                                        "Status: " + (tarefaAtualizada.isCompleta() ? "Completa" : "Incompleta") + "\n"
-                        );
-                        System.out.println("---------------");
+                        System.out.println("Tarefa atualizada com sucesso!");
                     } else {
-                        System.out.println("Tarefa com ID " + idAtualizar + " não encontrada!");
+                        System.out.println("Tarefa não encontrada!");
                     }
                     break;
 
@@ -132,7 +116,7 @@ public class AppToDo {
                     List<Tarefa> todasTarefas = tarefas.listar();
 
                     if (todasTarefas.isEmpty()) {
-                        System.out.println("Nenhuma tarefa cadastrada.\n");
+                        System.out.println("Nenhuma tarefa cadastrada.");
                     } else {
                         for (Tarefa t : todasTarefas) {
                             System.out.println("ID: " + t.getId());
@@ -144,10 +128,33 @@ public class AppToDo {
                     }
                     break;
 
+                case 5:
+                    System.out.println("Digite o ID da tarefa que deseja consultar: ");
+                    long idConsulta = scanner.nextLong();
+                    scanner.nextLine();
+
+                    Tarefa tarefaEncontrada = tarefas.buscarPorId(idConsulta);
+
+                    if (tarefaEncontrada != null) {
+                        System.out.println("Tarefa encontrada:");
+                        System.out.println("ID: " + tarefaEncontrada.getId());
+                        System.out.println("Título: " + tarefaEncontrada.getTitulo());
+                        System.out.println("Descrição: " +
+                                (tarefaEncontrada.getDescricao() != null ? tarefaEncontrada.getDescricao() : "Nenhuma"));
+                        System.out.println("Status: " + (tarefaEncontrada.isCompleta() ? "Completa" : "Incompleta"));
+                        System.out.println("---------------");
+                    } else {
+                        System.out.println("Tarefa com ID " + idConsulta + " não encontrada!");
+                    }
+                    break;
+
                 case 6:
-                    System.out.println("Operação das tarefas finalizada");
+                    System.out.println("Operação finalizada. Até mais!");
                     controle = false;
                     break;
+
+                default:
+                    System.out.println("Opção inválida, tente novamente.");
             }
         }
     }
